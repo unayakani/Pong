@@ -23,6 +23,7 @@ int main() {
 	SetTargetFPS(60);
 
 	while (!WindowShouldClose()) {
+		Rectangle Player1RectBefore = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT };
 
 		if (IsKeyDown(KEY_W))    Player1.y -= MOVE_AMOUNT_PLAYER;
 		if (IsKeyDown(KEY_S))    Player1.y += MOVE_AMOUNT_PLAYER;
