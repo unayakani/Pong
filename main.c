@@ -24,11 +24,14 @@ int main() {
 
 	while (!WindowShouldClose()) {
 		Rectangle Player1RectBefore = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT };
+		Rectangle Player2RectBefore = { Player2.x, Player2.y, RECT_WIDTH    , RECT_HEIGHT };
+		Rectangle TopBar			= { -10, -10, 1940, 10 };
+		Rectangle BottomBar			= { -10, 1080, 1940, 10 };
 
-		if (IsKeyDown(KEY_W))    Player1.y -= MOVE_AMOUNT_PLAYER;
-		if (IsKeyDown(KEY_S))    Player1.y += MOVE_AMOUNT_PLAYER;
-		if (IsKeyDown(KEY_UP))   Player2.y -= MOVE_AMOUNT_PLAYER;
-		if (IsKeyDown(KEY_DOWN)) Player2.y += MOVE_AMOUNT_PLAYER;
+		if (IsKeyDown(KEY_W)	&& !CheckCollisionRecs(Player1RectBefore, TopBar	)) Player1.y -= MOVE_AMOUNT_PLAYER;
+		if (IsKeyDown(KEY_S)	&& !CheckCollisionRecs(Player1RectBefore, BottomBar	)) Player1.y += MOVE_AMOUNT_PLAYER;
+		if (IsKeyDown(KEY_UP)	&& !CheckCollisionRecs(Player2RectBefore, TopBar	)) Player2.y -= MOVE_AMOUNT_PLAYER;
+		if (IsKeyDown(KEY_DOWN) && !CheckCollisionRecs(Player2RectBefore, BottomBar )) Player2.y += MOVE_AMOUNT_PLAYER;
 
 		Rectangle Player1Rect = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT   };
 		Rectangle Player2Rect = { Player2.x, Player2.y, RECT_WIDTH    , RECT_HEIGHT   };
