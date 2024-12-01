@@ -33,6 +33,8 @@ int main() {
 		nanosleep(&ts, NULL);
 
 		UpdateMusicStream(music);
+		DrawText("Player 1 - W , S", 12, 10, 30, GRAY);
+		DrawText("Player 2 - UP, DOWN", 1588, 10, 30, GRAY);
 
 		Rectangle Player1RectBefore = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT };
 		Rectangle Player2RectBefore = { Player2.x, Player2.y, RECT_WIDTH    , RECT_HEIGHT };
