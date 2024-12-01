@@ -20,9 +20,16 @@ int main() {
 	Vector2 Pong    = { (int)(SCREEN_WIDTH/2 - PONG_DIMENSION/2), (int)(SCREEN_HEIGHT/2 - PONG_DIMENSION/2) };
 
 	InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong");
+	InitAudioDevice();
+
+	Music music = LoadMusicStream("cool-powerful-hard-rock-243776.mp3");
+	PlayMusicStream(music);
+
 	SetTargetFPS(60);
 
 	while (!WindowShouldClose()) {
+		UpdateMusicStream(music);
+
 		Rectangle Player1RectBefore = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT };
 		Rectangle Player2RectBefore = { Player2.x, Player2.y, RECT_WIDTH    , RECT_HEIGHT };
 		Rectangle TopBar			= { -10, -10, 1940, 10 };
