@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include <stdbool.h>
+#include <time.h>
 
 int main() {
 	const int SCREEN_WIDTH       = 1920;
@@ -7,13 +8,14 @@ int main() {
 	const int RECT_WIDTH		 = 30;
 	const int RECT_HEIGHT		 = 200;
 	const int PONG_DIMENSION	 = 30;
-	const int MOVE_AMOUNT_PONG	 = 5;
-	const int MOVE_AMOUNT_PLAYER = 8;
+	const int MOVE_AMOUNT_PONG	 = 1;
+	const int MOVE_AMOUNT_PLAYER = 2;
 	bool pongMovingDown, pongMovingUp, pongMovingLeft, pongMovingRight;
 	pongMovingDown  = true;
 	pongMovingUp    = false;
 	pongMovingLeft  = true;
 	pongMovingRight = false;
+	struct timespec ts = {0, 2500000L};
 
 	Vector2 Player1 = { (int)(SCREEN_WIDTH/2 - 900)             , (int)(SCREEN_HEIGHT/2 - RECT_HEIGHT/2)    };
 	Vector2 Player2 = { (int)(SCREEN_WIDTH/2 + 900 - RECT_WIDTH), (int)(SCREEN_HEIGHT/2 - RECT_HEIGHT/2)    };
@@ -25,9 +27,11 @@ int main() {
 	Music music = LoadMusicStream("cool-powerful-hard-rock-243776.mp3");
 	PlayMusicStream(music);
 
-	SetTargetFPS(60);
+	SetTargetFPS(0);
 
 	while (!WindowShouldClose()) {
+		nanosleep(&ts, NULL);
+
 		UpdateMusicStream(music);
 
 		Rectangle Player1RectBefore = { Player1.x, Player1.y, RECT_WIDTH    , RECT_HEIGHT };
@@ -92,6 +96,7 @@ int main() {
 			DrawRectangle(Pong.x, Pong.y, PONG_DIMENSION, PONG_DIMENSION, RAYWHITE);
 
 		EndDrawing();
+
 
 	}
 
